@@ -24,13 +24,14 @@ class EncryptionHelper {
   }
 
   decryptText (text) {
+    const initialText = text;
     if (!text.startsWith(TAG)) {
-      return text;
+      return initialText;
     }
     text = text.replace(REGEX_TAG, '');
     const match = IV_REGEX.exec(text);
-    if (match.length !== 2) {
-      return text;
+    if (!match || match.length !== 2) {
+      return initialText;
     }
     const iv = Buffer.from(match[1], ENCODING);
     text = text.replace(IV_REGEX, '');

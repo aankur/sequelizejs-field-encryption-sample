@@ -18,11 +18,9 @@ module.exports = (sequelize, DataTypes) => {
   }, {});
 
   User.beforeCreate((user, options) => {
-    console.log('beforeCreate');
     encryptData(user, options);
   });
   User.beforeUpdate((user, options) => {
-    console.log('beforeUpdate');
     if (user.changed('privatedata')) {
       encryptData(user, options);
     }

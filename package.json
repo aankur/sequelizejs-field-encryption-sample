@@ -4,12 +4,28 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "pretest": "del test_data.sqlite3 && NODE_ENV=test sequelize db:migrate",
+    "test": "semistandard --env mocha && NODE_ENV=test nyc --reporter=html mocha test --recursive",
+    "lint": "semistandard --env mocha",
+    "lint:fix": "semistandard --env mocha --fix"
   },
   "author": "Ankur Deep Jaiswal <ankur@techgentsia.com>",
   "license": "MIT",
   "dependencies": {
     "mysql2": "^1.6.5",
     "sequelize": "^5.10.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4",
+    "nyc": "^14.1.1",
+    "semistandard": "^13.0.1",
+    "sequelize-cli": "^5.5.0",
+    "sequelize-test-helpers": "^1.1.2",
+    "sinon": "^7.3.2",
+    "sqlite3": "^4.0.9"
+  },
+  "optionalDependencies": {
+    "win-node-env": "^0.4.0"
   }
 }
