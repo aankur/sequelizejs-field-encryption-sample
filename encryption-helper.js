@@ -25,7 +25,7 @@ class EncryptionHelper {
 
   decryptText (text) {
     const initialText = text;
-    if (!text.startsWith(TAG)) {
+    if (!text || !text.startsWith(TAG)) {
       return initialText;
     }
     text = text.replace(REGEX_TAG, '');

@@ -1,8 +1,9 @@
 'use strict';
 const EncryptionHelper = require('./../encryption-helper');
 function encryptData (user, options) {
-  user.privatedata = user.privatedata && user.privatedata !== '' ? EncryptionHelper.encryptText(user.privatedata) : '';
+  user.privatedata = user.privatedata != null ? EncryptionHelper.encryptText(user.privatedata) : null;
 }
+
 module.exports = (sequelize, DataTypes) => {
   const User = sequelize.define('User', {
     firstName: DataTypes.STRING,
